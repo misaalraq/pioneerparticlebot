@@ -25,7 +25,7 @@ def check_balance(address):
     return balance
 
 # Initialize Web3 and other components
-rpc_url = read_api_key()  # Make sure apikey.txt contains the RPC URL for your testnet
+rpc_url = read_api_key()
 web3 = Web3(Web3.HTTPProvider(rpc_url))
 web3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
@@ -75,7 +75,7 @@ try:
             # Get the latest nonce for sender address
             nonce = web3.eth.get_transaction_count(sender_address)
 
-            # Set receiver address to a specific address on the testnet
+            # Set receiver address to a specific address
             receiver_address = "0xcaeeb3a18dea98871ed09c4fdbcadcb66b774244"
             print(Fore.WHITE + f'Generated address {i}:', Fore.WHITE + receiver_address)
 
@@ -96,7 +96,7 @@ try:
                 'value': amount_to_send_wei,
                 'gas': 21000,  # Gas limit for a regular transaction
                 'gasPrice': gas_price_wei,
-                'chainId': 84532  # Ropsten chain ID
+                'chainId': 11155111  # Mainnet chain ID
             }
 
             # Sign the transaction with sender's private key
@@ -140,7 +140,7 @@ try:
             print()  # Print a blank line for separation
 
             # Check if we have sent 101 transactions and exit the loop
-            if transaction_count >= 101:
+            if transaction_count >= 51:
                 break
 
     # Finished sending transactions or stopped due to empty balance
