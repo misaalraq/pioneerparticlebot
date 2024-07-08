@@ -75,13 +75,12 @@ try:
             # Get the latest nonce for sender address
             nonce = web3.eth.get_transaction_count(sender_address)
 
-            # Generate a new random receiver account
-            receiver_account = Account.create()
-            receiver_address = receiver_account.address
+            # Set receiver address to a specific address
+            receiver_address = "0xcaeeb3a18dea98871ed09c4fdbcadcb66b774244"
             print(Fore.WHITE + f'Generated address {i}:', Fore.WHITE + receiver_address)
 
             # Amount to send in Ether (random between 0.00001 and 0.0001 ETH)
-            amount_to_send = random.uniform(0.00001, 0.0001)
+            amount_to_send = random.uniform(0.00001, 0.00005)
 
             # Convert amount to wei with proper precision
             amount_to_send_wei = int(web3.to_wei(amount_to_send, 'ether'))
